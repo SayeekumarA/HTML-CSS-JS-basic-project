@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    background-color: black;
+    overflow: hidden;
+}
+
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    /*z-index: 0; */
+}
+
+/* Centered glitch text */
+.glitch {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -90%);
+    font-family: 'VT323', monospace;
+    font-size: 90px;
+    color: #00ff00;
+    letter-spacing: 5px;
+    text-shadow: 0 0 10px #00ff00;
+    animation: flicker 2.5s infinite;
+    z-index: 1;
+}
+
+.glitch::before,
+.glitch::after {
+    content: "HACKER";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+.glitch::before {
+    clip-path: inset(0 0 0% 0);
+    transform: translate(2px, 2px);
+    animation: glitchTop 1.5s infinite linear reverse; 
+}
+
+.glitch::after {
+    clip-path: inset(0% 0 0% 0);
+    transform: translate(2px, 2px);
+    animation: glitchBottom 1.0s infinite linear reverse; 
+}
+
+@keyframes flicker {
+    0%, 10%, 25%, 40%, 65%, 100% { opacity: 1; }
+    15%, 30%, 50%, 80% { opacity: 0.3; }
+}
+
+@keyframes glitchTop {
+    0% { transform: translate(-2px, -2px); }
+    100% { transform: translate(3px, -2px); }
+}
+
+@keyframes glitchBottom {
+    0% { transform: translate(2px, 2px); }
+    100% { transform: translate(-3px, 2px); }
+}
